@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image'
+import Image from 'next/image';
 import { Flex, Box, Text, Icon } from '@chakra-ui/react';
 import { BsFilter } from 'react-icons/bs';
 
@@ -25,7 +25,7 @@ const Search = ({properties}) => {
         fontSize='lg'
         justifyContent='center'
         alignItems='center'
-        onClick={() => setSearchFilters((prevFilters) => !prevFilters)}
+        onClick={() => setSearchFilters((prevFilters) => !prevFilters)} // setSearchFilters toggles on/off (shows/hides the SearchFilters component)- means if we are filtering smth and we click we stop filtering and vv = if we aren't filtering, we click and then filtering starts
       >
         <Text>Search Property By Filters</Text>
         <Icon paddingLeft='2' w='7' as={BsFilter} />
@@ -50,8 +50,9 @@ const Search = ({properties}) => {
 };
 
 export default Search;
-
+// "query" as parameter coming to getServerSideProps is coming from url
 export async function getServerSideProps({query}) {
+  // creating variables to get values (we want to filter by) from url and setting default values
     const purpose = query.purpose || 'for-rent';
     const rentFrequency = query.rentFrequency || 'yearly';
     const minPrice = query.minPrice || '0';
@@ -64,7 +65,7 @@ export async function getServerSideProps({query}) {
     const categoryExternalID = query.categoryExternalID || '4';
   
     const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`);
-  
+    // adding to props object the property 'properties'
     return {
       props: {
         properties: data?.hits,
