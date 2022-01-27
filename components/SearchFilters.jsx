@@ -26,7 +26,7 @@ const SearchFilters = () => {
          // 2: {name: 'minPrice', value: '10000'} - the value of the filter item chosen
 
         values.forEach((item) => {
-            // updating the query
+            // updating the query under condition that in the query there should be only those values that are of the item.names chosen (those not chosen should not be included into the query)
             // console.log(item.value); // 10000
             //  console.log(filterValues?.[item.name]); // minPrice
             if(item.value && filterValues?.[item.name]) {
@@ -37,7 +37,7 @@ const SearchFilters = () => {
         router.push({ pathname: path, query })
     }
     return (
-        <Flex bg='gray.100' p='4' justifyContent='center' flexWrap='wrap'>
+        <Flex bg='pink.50' p='4' justifyContent='center' flexWrap='wrap'>
             {filters.map((filter) => (
                 <Box key={filter.queryName}>
                     <Select

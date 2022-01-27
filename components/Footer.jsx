@@ -6,8 +6,8 @@ const getCurrentYear = () => {
 
 const Footer = () => (
 
-  <Box textAlign='center' p='5' color='gray.600' borderTop='1px' borderColor='gray.100'>
-    © {getCurrentYear()} Elena, Inc.
+  <Box textAlign='center' p='5' color='purple.800' borderTop='1px' borderColor='purple.100'>
+    © {getCurrentYear()} Elena Sunshine, Inc.
   </Box>
 );
 
